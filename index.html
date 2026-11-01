@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fine-Tuning Lab</title>
+<meta name="description" content="Five toy-universe simulations of cosmic fine-tuning: gravity, dark energy, the strong force, the Hoyle state and electromagnetism. Change a constant and watch stars, galaxies and elements form or fail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/lab.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Toy universes · run the counterfactuals</div>
+    <h1>Fine-Tuning Lab</h1>
+    <p class="lede">Each bench below runs a simplified model of one "dial" in physics. Pick a preset or drag the slider and the run restarts. <b>The dashed ghost in each chart is our universe</b>, so you can watch exactly where a modified universe parts ways with ours.</p>
+    <ul class="toc">
+      <li><a href="#gravity"><span>G</span>Gravity</a></li>
+      <li><a href="#lambda"><span>Λ</span>Dark energy</a></li>
+      <li><a href="#strong"><span>αₛ</span>Strong force</a></li>
+      <li><a href="#hoyle"><span>¹²C*</span>Hoyle state</a></li>
+      <li><a href="#alpha"><span>α</span>Electromagnetism</a></li>
+    </ul>
+  </header>
+
+  <!-- ============ GRAVITY ============ -->
+  <section class="bench" id="gravity">
+    <div class="bench-head">
+      <div class="eyebrow">Gravity vs. the Big Bang</div>
+      <h2>Collapse, coast, or build galaxies</h2>
+      <p>Early on, the pull of matter and the outward rush of expansion were almost perfectly balanced. This dial sets gravity's pull relative to that rush, starting when the universe was about 170,000 years old. Matter begins almost perfectly smooth (density ripples of 0.4%); gravity has to grow those ripples into stars before expansion thins everything out, or before gravity itself drags the whole universe back together.</p>
+    </div>
+    <div class="grid">
+      <div class="viewport"><canvas data-role="view"></canvas><div class="tag">COMOVING BOX · DARK MATTER + GAS</div><div class="big" data-role="big"></div></div>
+      <div class="panel">
+        <div class="label">Gravity relative to ours</div>
+        <div class="presets" data-role="presets"></div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="label">Fine control</span><output data-role="out"></output></div>
+          <input type="range" id="g-slider" data-role="slider" min="-6" max="6" step="0.05" value="0" aria-label="Gravity strength change in percent">
+          <div class="slider-ends"><span>−6% weaker</span><span>+6% stronger</span></div>
+        </div>
+        <div class="buttons"><button class="primary" data-role="play">Play</button><button data-role="restart">Restart</button></div>
+        <dl class="readouts" data-role="readouts"></dl>
+        <ul class="milestones" data-role="ms"></ul>
+        <div class="verdict" data-role="verdict">Press Play, or pick a preset.</div>
+      </div>
+    </div>
+    <div class="chartbox">
+      <div class="legend"><span><i style="background:var(--teal)"></i>Size of universe (scale factor)</span><span><i style="background:var(--gold)"></i>Clumpiness (density contrast)</span><span><i class="dash"></i>Our universe</span></div>
+      <canvas data-role="chart"></canvas>
+    </div>
+  </section>
+
+  <!-- ============ LAMBDA ============ -->
+  <section class="bench" id="lambda">
+    <div class="bench-head">
+      <div class="eyebrow">Dark energy · the cosmological constant Λ</div>
+      <h2>Too much push, too much pull</h2>
+      <p>Λ is a steady pressure built into empty space. Ours is tiny: it only took over about 5 billion years ago, long after galaxies formed. Naive quantum estimates put it up to 10<sup>120</sup> times larger. A big positive Λ rips matter apart before it can clump; a big negative Λ pulls everything back into a crunch.</p>
+    </div>
+    <div class="grid">
+      <div class="viewport"><canvas data-role="view"></canvas><div class="tag">COMOVING BOX · DARK MATTER + GAS</div><div class="big" data-role="big"></div></div>
+      <div class="panel">
+        <div class="label">Λ relative to ours</div>
+        <div class="presets" data-role="presets"></div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="label">Fine control (log scale)</span><output data-role="out"></output></div>
+          <input type="range" id="l-slider" data-role="slider" min="-4" max="5" step="0.05" value="0" aria-label="Cosmological constant multiplier, log scale">
+          <div class="slider-ends"><span>−10,000×</span><span>×1</span><span>100,000×</span></div>
+        </div>
+        <div class="buttons"><button class="primary" data-role="play">Play</button><button data-role="restart">Restart</button></div>
+        <dl class="readouts" data-role="readouts"></dl>
+        <ul class="milestones" data-role="ms"></ul>
+        <div class="verdict" data-role="verdict">Press Play, or pick a preset.</div>
+      </div>
+    </div>
+    <div class="chartbox">
+      <div class="legend"><span><i style="background:var(--teal)"></i>Size of universe (scale factor)</span><span><i style="background:var(--gold)"></i>Clumpiness (density contrast)</span><span><i class="dash"></i>Our universe</span></div>
+      <canvas data-role="chart"></canvas>
+    </div>
+  </section>
+
+  <!-- ============ STRONG FORCE ============ -->
+  <section class="bench" id="strong">
+    <div class="bench-head">
+      <div class="eyebrow">Strong nuclear force · the first three minutes</div>
+      <h2>Does anything stick?</h2>
+      <p>One second after the Big Bang there are about 5½ protons for every neutron. As the universe cools, a proton and neutron can bind into deuterium, which then fuses onward to helium. Deuterium is held together by only 2.2 MeV. Two protons (a "diproton") fall just short of being bound at all. Nudge the strong force and both facts change.</p>
+    </div>
+    <div class="grid">
+      <div class="viewport"><canvas data-role="view"></canvas><div class="tag">PRIMORDIAL PLASMA · 300 NUCLEONS</div><div class="big" data-role="big"></div></div>
+      <div class="panel">
+        <div class="label">Strong force relative to ours</div>
+        <div class="presets" data-role="presets"></div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="label">Fine control</span><output data-role="out"></output></div>
+          <input type="range" id="s-slider" data-role="slider" min="-12" max="12" step="0.1" value="0" aria-label="Strong force change in percent">
+          <div class="slider-ends"><span>−12%</span><span>+12%</span></div>
+        </div>
+        <div class="buttons"><button class="primary" data-role="play">Play</button><button data-role="restart">Restart</button></div>
+        <dl class="readouts" data-role="readouts"></dl>
+        <div class="legend" style="padding:0">
+          <span><i class="dot" style="background:var(--ember)"></i>proton</span>
+          <span><i class="dot" style="background:var(--slate)"></i>neutron</span>
+          <span><i class="dot" style="background:var(--teal)"></i>deuterium</span>
+          <span><i class="dot" style="background:var(--gold)"></i>helium-4</span>
+          <span><i class="dot" style="background:var(--violet)"></i>diproton</span>
+        </div>
+        <div class="verdict" data-role="verdict">Press Play, or pick a preset.</div>
+      </div>
+    </div>
+    <div class="chartbox">
+      <div class="legend"><span><i style="background:var(--ember)"></i>Hydrogen</span><span><i style="background:var(--gold)"></i>Helium-4</span><span><i style="background:var(--slate)"></i>Free neutrons</span><span><i style="background:var(--teal)"></i>Deuterium</span><span><i style="background:var(--violet)"></i>Diprotons</span><span><i class="dash"></i>Our universe (H, He)</span></div>
+      <canvas data-role="chart"></canvas>
+    </div>
+  </section>
+
+  <!-- ============ HOYLE STATE ============ -->
+  <section class="bench" id="hoyle">
+    <div class="bench-head">
+      <div class="eyebrow">The Hoyle state · carbon and oxygen from stars</div>
+      <h2>Carbon, oxygen, or both</h2>
+      <p>Inside a red giant, three helium nuclei fuse into carbon. Two of them first make beryllium-8, which falls apart in about 10<sup>−16</sup> seconds, so a third has to arrive almost at once. That works because carbon-12 has an excited state, the "Hoyle state," 379 keV above the energy of three free helium nuclei: within reach of the star's heat. Some of the carbon then captures one more helium nucleus and becomes oxygen. Move the state and the star changes its temperature to compensate, which decides how much carbon survives.</p>
+    </div>
+    <div class="grid">
+      <div class="viewport"><canvas data-role="view"></canvas><div class="tag">HELIUM-BURNING CORE · A SAMPLE OF NUCLEI</div><div class="big" data-role="big"></div></div>
+      <div class="panel">
+        <div class="label">Hoyle-state energy relative to ours</div>
+        <div class="presets" data-role="presets"></div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="label">Fine control</span><output data-role="out"></output></div>
+          <input type="range" id="h-slider" data-role="slider" min="-200" max="300" step="5" value="0" aria-label="Shift of the Hoyle state energy in keV">
+          <div class="slider-ends"><span>−200 keV</span><span>+300 keV</span></div>
+          <div class="hint" data-role="hint"></div>
+        </div>
+        <div class="buttons"><button class="primary" data-role="play">Play</button><button data-role="restart">Restart</button></div>
+        <dl class="readouts" data-role="readouts"></dl>
+        <div class="compbar" data-role="comp" aria-hidden="true"><i style="background:var(--gold)"></i><i style="background:var(--teal)"></i><i style="background:var(--violet)"></i><i style="background:var(--ember)"></i></div>
+        <div class="legend" style="padding:0">
+          <span><i class="dot" style="background:var(--gold)"></i>helium-4</span>
+          <span><i class="dot" style="background:var(--teal)"></i>carbon-12</span>
+          <span><i class="dot" style="background:var(--violet)"></i>oxygen-16</span>
+          <span><i class="dot" style="background:var(--ember)"></i>neon-20</span>
+        </div>
+        <div class="verdict" data-role="verdict">Press Play, or pick a preset.</div>
+      </div>
+    </div>
+    <div class="chartbox split">
+      <div>
+        <div class="legend"><span><i style="background:var(--gold)"></i>Helium</span><span><i style="background:var(--teal)"></i>Carbon</span><span><i style="background:var(--violet)"></i>Oxygen</span><span><i style="background:var(--ember)"></i>Neon</span><span><i class="dash"></i>Our universe (C, O)</span></div>
+        <canvas data-role="chart"></canvas>
+      </div>
+      <div>
+        <div class="chart-title">Energy levels of carbon-12</div>
+        <canvas data-role="levels"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ELECTROMAGNETISM ============ -->
+  <section class="bench" id="alpha">
+    <div class="bench-head">
+      <div class="eyebrow">Electromagnetism · the fine-structure constant <span class="nocase">α</span></div>
+      <h2>Which elements get to exist</h2>
+      <p>α ≈ 1/137 sets the strength of electric forces. Inside every nucleus, protons repel one another and the strong force has to hold them together anyway; that same repulsion sets the neutron–proton mass gap and shifts the Hoyle state. Run the clock from the Big Bang to today and watch which elements are made and which survive. Chemistry itself changes smoothly (atoms shrink as 1/α, bonds strengthen as α²), so this bench looks for what breaks.</p>
+    </div>
+    <div class="grid">
+      <div class="viewport"><canvas data-role="view"></canvas><div class="tag">PERIODIC TABLE · BRIGHTER = MORE ABUNDANT</div><div class="big" data-role="big"></div></div>
+      <div class="panel">
+        <div class="label"><span class="nocase">α</span> relative to ours</div>
+        <div class="presets" data-role="presets"></div>
+        <div class="slider-row">
+          <div class="slider-top"><span class="label">Fine control (log scale)</span><output data-role="out"></output></div>
+          <input type="range" id="a-slider" data-role="slider" min="-0.30103" max="0.39794" step="0.0005" value="0" aria-label="Fine-structure constant multiplier, log scale">
+          <div class="slider-ends"><span>×½</span><span>×1</span><span>×2½</span></div>
+        </div>
+        <div class="buttons"><button class="primary" data-role="play">Play</button><button data-role="restart">Restart</button></div>
+        <dl class="readouts" data-role="readouts"></dl>
+        <ul class="milestones" data-role="ms"></ul>
+        <div class="legend" style="padding:0">
+          <span><i class="box" style="border-color:var(--ember)"></i>gone (exists in ours)</span>
+          <span><i class="box" style="border-color:var(--teal)"></i>new (unstable in ours)</span>
+        </div>
+        <div class="verdict" data-role="verdict">Press Play, or pick a preset.</div>
+      </div>
+    </div>
+    <div class="chartbox">
+      <div class="legend"><span><i style="background:var(--gold)"></i>Abundance today, by atomic number (atoms per 10¹² of our hydrogen)</span><span><i class="dash"></i>Our universe</span><span><i style="background:var(--ember)"></i>Lost</span></div>
+      <canvas data-role="chart"></canvas>
+    </div>
+  </section>
+
+  <section class="notes">
+    <div class="eyebrow">Read with care</div>
+    <h2>What these toy models leave out</h2>
+    <ul>
+      <li><b>One dial at a time.</b> Each bench changes a single quantity and holds the rest fixed. When several constants vary together, some effects compensate; Fred Adams (2008, 2019), for example, found working stars across a broad range of gravity, fine-structure and nuclear-rate values. How big the "life-permitting region" is depends a lot on which axes you allow to move.</li>
+      <li><b>Gravity bench = density bench.</b> What actually decides collapse versus coasting is the ratio of gravity's pull to the initial expansion rate (cosmologists' Ω). Starting the clock earlier makes the required balance far finer; extrapolated back to the Planck time it is often quoted as about 1 part in 10<sup>60</sup>. Cosmic inflation is the standard proposal for why Ω was driven so close to 1, so many cosmologists treat this one as an initial-condition puzzle rather than a fine-tuned constant.</li>
+      <li><b>Structure is drawn with the Zel'dovich approximation</b>, a first-order picture of how matter streams into sheets and filaments. Growth uses the linear equation for density ripples in each universe's own expansion history. "First stars" means the densest peaks reached collapse (contrast ≈ 0.4); "galaxies" means typical regions did (contrast ≈ 1). The 5-billion-year "steady starlight" yardstick is a stand-in for stellar generations, planets and the slow chemistry of life.</li>
+      <li><b>Λ bench.</b> This reproduces Steven Weinberg's 1987 argument: galaxies form only if Λ is below a few hundred to a few thousand times ours (the exact bound depends on how lumpy the early universe was). The puzzle is that physics gives no known reason it is not 10<sup>120</sup> times larger.</li>
+      <li><b>Strong-force bench.</b> The thresholds used here (deuterium unbinds at about −6%, diprotons bind at about +3.5%) sit within the range of published estimates, which differ by a few percent. Freeman Dyson's classic claim was that bound diprotons would burn nearly all hydrogen; later work (MacDonald &amp; Mullan 2009; Bradford 2009) argues the effect is milder than that, and the model shows hydrogen loss growing gradually with the size of the change. Reaction rates and the diproton's decay to deuterium are sped up so they fit in a few seconds of animation.</li>
+      <li><b>Hoyle bench: one core, one temperature.</b> The toy burns helium in a single zone at fixed density with standard reaction rates (Caughlan &amp; Fowler 1988). For our universe it ends with about 25% carbon and 75% oxygen, close to full stellar models. It is touchier than those models for small shifts, because its last carbon is burned at the very end. Published estimates of the tolerance differ a lot: Oberhummer, Schlattl and colleagues (2000, 2004) found nearly all-carbon or all-oxygen output at about ±100 keV, while newer stellar models by Huang, Adams &amp; Grohs (2019) still made significant carbon and oxygen from about −300 to +500 keV. How finely tuned the Hoyle state is remains an open debate.</li>
+      <li><b>Electromagnetism bench.</b> Whether hydrogen survives depends on the neutron–proton mass gap, and estimates of its electromagnetic share range from 0.58 to 1.04 MeV, so hydrogen disappears somewhere between α ×1.75 and ×2.35 (×2 with the 0.80 MeV used here). The Hoyle-state shift follows Epelbaum et al. (2013), who put the window at about ±2.5% in α (Oberhummer et al. 2000: about 4%); this toy core narrows it further, for the reason above. Below about −3.3%, beryllium-8 becomes bound and the model stops. Element survival uses a liquid-drop mass formula pinned to measured decay energies and half-lives, plus Gamow tunnelling and a simple fission estimate, so the cut-offs for the heaviest elements are uncertain by several percent. Abundances are approximate solar-system values (Asplund et al. 2009).</li>
+    </ul>
+    <p class="foot">Times in the gravity and dark-energy benches are labelled using our universe's calibration (first stars ≈ 170 million years, galaxies ≈ 0.7 billion years, today ≈ 14 billion years). Further reading: <a href="https://arxiv.org/abs/1902.03928" target="_blank" rel="noopener">Adams 2019</a>, <a href="https://arxiv.org/abs/astro-ph/0007178" target="_blank" rel="noopener">Oberhummer et al. 2000</a>, <a href="https://arxiv.org/abs/astro-ph/0307528" target="_blank" rel="noopener">Schlattl et al. 2004</a>, <a href="https://arxiv.org/abs/1303.4856" target="_blank" rel="noopener">Epelbaum et al. 2013</a>, <a href="https://arxiv.org/abs/1809.09168" target="_blank" rel="noopener">Huang, Adams &amp; Grohs 2019</a>.</p>
+  </section>
+</div>
+
+<script src="js/physics/core.js"></script>
+<script src="js/physics/cosmology.js"></script>
+<script src="js/physics/bbn.js"></script>
+<script src="js/physics/helium-burning.js"></script>
+<script src="js/physics/electromagnetism.js"></script>
+<script src="js/lab.js"></script>
+<script src="js/benches/cosmology.js"></script>
+<script src="js/benches/strong.js"></script>
+<script src="js/benches/hoyle.js"></script>
+<script src="js/benches/alpha.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
